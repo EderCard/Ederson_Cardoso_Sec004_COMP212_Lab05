@@ -30,7 +30,7 @@
         {
             this.CalculateAsynchronouslyGroupBox = new System.Windows.Forms.GroupBox();
             this.FactorialResultLabel = new System.Windows.Forms.Label();
-            this.CalculeteButton = new System.Windows.Forms.Button();
+            this.CalculateButton = new System.Windows.Forms.Button();
             this.GetFactorialOfTextBox = new System.Windows.Forms.TextBox();
             this.GetFactorialofLabel = new System.Windows.Forms.Label();
             this.CheckEvenOddGroupBox = new System.Windows.Forms.GroupBox();
@@ -62,7 +62,7 @@
             // CalculateAsynchronouslyGroupBox
             // 
             this.CalculateAsynchronouslyGroupBox.Controls.Add(this.FactorialResultLabel);
-            this.CalculateAsynchronouslyGroupBox.Controls.Add(this.CalculeteButton);
+            this.CalculateAsynchronouslyGroupBox.Controls.Add(this.CalculateButton);
             this.CalculateAsynchronouslyGroupBox.Controls.Add(this.GetFactorialOfTextBox);
             this.CalculateAsynchronouslyGroupBox.Controls.Add(this.GetFactorialofLabel);
             this.CalculateAsynchronouslyGroupBox.Location = new System.Drawing.Point(13, 13);
@@ -77,18 +77,18 @@
             this.FactorialResultLabel.AutoSize = true;
             this.FactorialResultLabel.Location = new System.Drawing.Point(12, 110);
             this.FactorialResultLabel.Name = "FactorialResultLabel";
-            this.FactorialResultLabel.Size = new System.Drawing.Size(37, 13);
+            this.FactorialResultLabel.Size = new System.Drawing.Size(0, 13);
             this.FactorialResultLabel.TabIndex = 3;
-            this.FactorialResultLabel.Text = "Result";
             // 
-            // CalculeteButton
+            // CalculateButton
             // 
-            this.CalculeteButton.Location = new System.Drawing.Point(14, 55);
-            this.CalculeteButton.Name = "CalculeteButton";
-            this.CalculeteButton.Size = new System.Drawing.Size(180, 35);
-            this.CalculeteButton.TabIndex = 2;
-            this.CalculeteButton.Text = "Calculate";
-            this.CalculeteButton.UseVisualStyleBackColor = true;
+            this.CalculateButton.Location = new System.Drawing.Point(14, 55);
+            this.CalculateButton.Name = "CalculateButton";
+            this.CalculateButton.Size = new System.Drawing.Size(180, 35);
+            this.CalculateButton.TabIndex = 2;
+            this.CalculateButton.Text = "Calculate";
+            this.CalculateButton.UseVisualStyleBackColor = true;
+            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
             // 
             // GetFactorialOfTextBox
             // 
@@ -96,6 +96,7 @@
             this.GetFactorialOfTextBox.Name = "GetFactorialOfTextBox";
             this.GetFactorialOfTextBox.Size = new System.Drawing.Size(100, 20);
             this.GetFactorialOfTextBox.TabIndex = 1;
+            this.GetFactorialOfTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GetFactorialOfTextBox_KeyPress);
             // 
             // GetFactorialofLabel
             // 
@@ -144,6 +145,7 @@
             this.InputNumberTextBox.Name = "InputNumberTextBox";
             this.InputNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.InputNumberTextBox.TabIndex = 3;
+            this.InputNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputNumberTextBox_KeyPress);
             // 
             // InputNumberLabel
             // 
@@ -335,7 +337,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox CalculateAsynchronouslyGroupBox;
-        private System.Windows.Forms.Button CalculeteButton;
+        private System.Windows.Forms.Button CalculateButton;
         private System.Windows.Forms.TextBox GetFactorialOfTextBox;
         private System.Windows.Forms.Label GetFactorialofLabel;
         private System.Windows.Forms.GroupBox CheckEvenOddGroupBox;
