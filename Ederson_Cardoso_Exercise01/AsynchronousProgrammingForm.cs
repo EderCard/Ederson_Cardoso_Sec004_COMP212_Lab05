@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Ederson_Cardoso_Exercise01
 {
-    public partial class Form1 : Form
+    public partial class AsynchronousProgrammingForm : Form
     {
-        public Form1()
+        public AsynchronousProgrammingForm()
         {
             InitializeComponent();
         }
