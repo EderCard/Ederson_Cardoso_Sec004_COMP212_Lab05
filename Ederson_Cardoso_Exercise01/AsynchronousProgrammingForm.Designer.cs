@@ -49,11 +49,11 @@
             this.InputHighIndexTextBox = new System.Windows.Forms.TextBox();
             this.InpuLowIndexTextBox = new System.Windows.Forms.TextBox();
             this.InputSearchValueTextBox = new System.Windows.Forms.TextBox();
-            this.GeneratedValuesTextBox = new System.Windows.Forms.TextBox();
             this.GenerateValuesButton = new System.Windows.Forms.Button();
             this.CharRadioButton = new System.Windows.Forms.RadioButton();
             this.DoublesRadioButton = new System.Windows.Forms.RadioButton();
             this.IntegersRadioButton = new System.Windows.Forms.RadioButton();
+            this.GeneratedValuesListBox = new System.Windows.Forms.ListBox();
             this.CalculateAsynchronouslyGroupBox.SuspendLayout();
             this.CheckEvenOddGroupBox.SuspendLayout();
             this.DisplayListOfValuesAndSearchGroupBox.SuspendLayout();
@@ -126,9 +126,8 @@
             this.EvenOddResultLabel.AutoSize = true;
             this.EvenOddResultLabel.Location = new System.Drawing.Point(12, 120);
             this.EvenOddResultLabel.Name = "EvenOddResultLabel";
-            this.EvenOddResultLabel.Size = new System.Drawing.Size(37, 13);
+            this.EvenOddResultLabel.Size = new System.Drawing.Size(0, 13);
             this.EvenOddResultLabel.TabIndex = 4;
-            this.EvenOddResultLabel.Text = "Result";
             // 
             // CheckEvenOddButton
             // 
@@ -138,6 +137,7 @@
             this.CheckEvenOddButton.TabIndex = 3;
             this.CheckEvenOddButton.Text = "Check for Even or Odd";
             this.CheckEvenOddButton.UseVisualStyleBackColor = true;
+            this.CheckEvenOddButton.Click += new System.EventHandler(this.CheckEvenOddButton_Click);
             // 
             // InputNumberTextBox
             // 
@@ -158,6 +158,7 @@
             // 
             // DisplayListOfValuesAndSearchGroupBox
             // 
+            this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.GeneratedValuesListBox);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.DisplayButton);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.SearchButton);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.OutputValuesBetweenLowHighTextBox);
@@ -168,7 +169,6 @@
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InputHighIndexTextBox);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InpuLowIndexTextBox);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InputSearchValueTextBox);
-            this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.GeneratedValuesTextBox);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.GenerateValuesButton);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.CharRadioButton);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.DoublesRadioButton);
@@ -188,6 +188,7 @@
             this.DisplayButton.TabIndex = 12;
             this.DisplayButton.Text = "Display";
             this.DisplayButton.UseVisualStyleBackColor = true;
+            this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
             // 
             // SearchButton
             // 
@@ -197,10 +198,11 @@
             this.SearchButton.TabIndex = 11;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // OutputValuesBetweenLowHighTextBox
             // 
-            this.OutputValuesBetweenLowHighTextBox.Location = new System.Drawing.Point(70, 250);
+            this.OutputValuesBetweenLowHighTextBox.Location = new System.Drawing.Point(70, 247);
             this.OutputValuesBetweenLowHighTextBox.Multiline = true;
             this.OutputValuesBetweenLowHighTextBox.Name = "OutputValuesBetweenLowHighTextBox";
             this.OutputValuesBetweenLowHighTextBox.Size = new System.Drawing.Size(319, 49);
@@ -209,7 +211,7 @@
             // OutputOfValuesBetweenLowAndHighLabel
             // 
             this.OutputOfValuesBetweenLowAndHighLabel.AutoSize = true;
-            this.OutputOfValuesBetweenLowAndHighLabel.Location = new System.Drawing.Point(67, 234);
+            this.OutputOfValuesBetweenLowAndHighLabel.Location = new System.Drawing.Point(67, 231);
             this.OutputOfValuesBetweenLowAndHighLabel.Name = "OutputOfValuesBetweenLowAndHighLabel";
             this.OutputOfValuesBetweenLowAndHighLabel.Size = new System.Drawing.Size(201, 13);
             this.OutputOfValuesBetweenLowAndHighLabel.TabIndex = 10;
@@ -263,14 +265,6 @@
             this.InputSearchValueTextBox.Size = new System.Drawing.Size(100, 20);
             this.InputSearchValueTextBox.TabIndex = 3;
             // 
-            // GeneratedValuesTextBox
-            // 
-            this.GeneratedValuesTextBox.Location = new System.Drawing.Point(7, 55);
-            this.GeneratedValuesTextBox.Multiline = true;
-            this.GeneratedValuesTextBox.Name = "GeneratedValuesTextBox";
-            this.GeneratedValuesTextBox.Size = new System.Drawing.Size(48, 244);
-            this.GeneratedValuesTextBox.TabIndex = 4;
-            // 
             // GenerateValuesButton
             // 
             this.GenerateValuesButton.Location = new System.Drawing.Point(280, 21);
@@ -279,6 +273,7 @@
             this.GenerateValuesButton.TabIndex = 3;
             this.GenerateValuesButton.Text = "Generate Values";
             this.GenerateValuesButton.UseVisualStyleBackColor = true;
+            this.GenerateValuesButton.Click += new System.EventHandler(this.GenerateValuesButton_Click);
             // 
             // CharRadioButton
             // 
@@ -313,6 +308,14 @@
             this.IntegersRadioButton.Text = "Integers";
             this.IntegersRadioButton.UseVisualStyleBackColor = true;
             // 
+            // GeneratedValuesListBox
+            // 
+            this.GeneratedValuesListBox.FormattingEnabled = true;
+            this.GeneratedValuesListBox.Location = new System.Drawing.Point(6, 71);
+            this.GeneratedValuesListBox.Name = "GeneratedValuesListBox";
+            this.GeneratedValuesListBox.Size = new System.Drawing.Size(43, 225);
+            this.GeneratedValuesListBox.TabIndex = 13;
+            // 
             // AsynchronousProgrammingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,6 +324,9 @@
             this.Controls.Add(this.DisplayListOfValuesAndSearchGroupBox);
             this.Controls.Add(this.CheckEvenOddGroupBox);
             this.Controls.Add(this.CalculateAsynchronouslyGroupBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AsynchronousProgrammingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asynchronous Programming";
@@ -344,7 +350,6 @@
         private System.Windows.Forms.TextBox InputNumberTextBox;
         private System.Windows.Forms.Label InputNumberLabel;
         private System.Windows.Forms.GroupBox DisplayListOfValuesAndSearchGroupBox;
-        private System.Windows.Forms.TextBox GeneratedValuesTextBox;
         private System.Windows.Forms.Button GenerateValuesButton;
         private System.Windows.Forms.RadioButton CharRadioButton;
         private System.Windows.Forms.RadioButton DoublesRadioButton;
@@ -362,6 +367,7 @@
         private System.Windows.Forms.TextBox InputSearchValueTextBox;
         private System.Windows.Forms.Label FactorialResultLabel;
         private System.Windows.Forms.Label EvenOddResultLabel;
+        private System.Windows.Forms.ListBox GeneratedValuesListBox;
     }
 }
 
