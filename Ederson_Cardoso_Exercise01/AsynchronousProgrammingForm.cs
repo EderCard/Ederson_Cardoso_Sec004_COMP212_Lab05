@@ -93,7 +93,7 @@ namespace Ederson_Cardoso_Exercise01
 
         #region Part II
         /// <summary>
-        /// This is the event handler for the CheckEvenOddButton click event
+        /// This is the event handler for the CheckEvenOddButton_Click event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -101,6 +101,7 @@ namespace Ederson_Cardoso_Exercise01
         {
             try
             {
+                // Retrieve user's input as an int
                 int input = int.Parse(InputNumberTextBox.Text);
 
                 IsEvenDelegate delIsEven = IsEven;
@@ -142,7 +143,7 @@ namespace Ederson_Cardoso_Exercise01
 
         #region Part III
         /// <summary>
-        /// This is the event handler for the GenerateValuesButton click event
+        /// This is the event handler for the GenerateValuesButton_Click event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -162,8 +163,7 @@ namespace Ederson_Cardoso_Exercise01
                     GeneratedValuesListBox.Items.Add(result);
                 }
             }
-            // generate doubles with interval
-            // random.NextDouble() * (maximum - minimum) + minimum;
+            // generate doubles with interval = random.NextDouble() * (maximum - minimum) + minimum;
             else if (DoublesRadioButton.Checked)
             {
                 double result;
@@ -179,14 +179,14 @@ namespace Ederson_Cardoso_Exercise01
                 char result;
                 for (int counter = 1; counter <= 10; counter++)
                 {
-                     result = (char)random.Next('A', 'Z');
-                     GeneratedValuesListBox.Items.Add(result);
+                    result = (char)random.Next('A', 'Z');
+                    GeneratedValuesListBox.Items.Add(result);
                 }
             }
         }// GenerateValuesButton_Click
 
         /// <summary>
-        /// This is the event handler for the SearchButton click event
+        /// This is the event handler for the SearchButton_Click event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -194,20 +194,14 @@ namespace Ederson_Cardoso_Exercise01
         {
             try
             {
-                // Create a list to store values present in the listBox
-                List<string> list = new List<string>();
-                
-                // Populate list with listBox values
-                for (int i = 0; i < GeneratedValuesListBox.Items.Count; i++)
-                {
-                    list.Add(GeneratedValuesListBox.Items[i].ToString());
-                }
+                // Get a list from generated values
+                List<string> list = GetListString();
 
                 // Check if informed value is present using a generic search method
-                bool result = SearchData(list, InputSearchValueTextBox.Text);
+                bool isPresent = SearchData(list, InputSearchValueTextBox.Text);
 
                 // Present result on MessageBox
-                if (result == true)
+                if (isPresent == true)
                 {
                     MessageBox.Show("Informed value is present in the list.");
                 }
@@ -232,27 +226,91 @@ namespace Ederson_Cardoso_Exercise01
         /// <returns></returns>
         private bool SearchData<T>(List<T> list, T searchValue) where T : IComparable<T>
         {
-            bool isPresent = false;
+            bool result = false;
             foreach (var item in list)
             {
                 if (item.CompareTo(searchValue) == 0)
                 {
-                    isPresent = true;
+                    result = true;
                     break;
                 }
             }
-            return isPresent;
+            return result;
         }// end SearchData
 
         /// <summary>
-        /// This is the event handler for the DisplayButton click event
+        /// This is the event handler for the DisplayButton_Click event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DisplayButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Retrieve user's input as an int
+                int lowIndex = int.Parse(InputLowIndexTextBox.Text);
+                int highIndex = int.Parse(InputHighIndexTextBox.Text);
+                
+                // Validate index values
+                if(lowIndex < 0 || highIndex >= GeneratedValuesListBox.Items.Count || lowIndex > highIndex)
+                { 
+                    throw new ArgumentOutOfRangeException(); 
+                }
 
+                // Get a list from generated values
+                List<string> list = GetListString();
+
+                Display(list, lowIndex, highIndex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "MESSAGE", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }// end DisplayButton_Click
+
+        /// <summary>
+        /// This method returns a 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
+        private void Display<T>(List<T> list, int low, int high) where T : IComparable<T>
+        {
+            List<T> between = new List<T>();
+
+            // Populate a sublist between with values from low and high index
+            for (int i = low; i <= high; i++)
+            {
+                between.Add(list[i]);
+            }
+
+            OutputValuesBetweenLowHighTextBox.Text = string.Empty;
+
+            // Print values from sublist between
+            foreach (var item in between)
+            {
+                OutputValuesBetweenLowHighTextBox.Text += item + " ";
+            }
+        }// end Display
+
+        /// <summary>
+        /// This method returns a List<string> from GeneratedValuesListBox
+        /// </summary>
+        /// <returns></returns>
+        private List<string> GetListString()
+        {
+            // Create a list to store values present in the listBox
+            List<string> list = new List<string>();
+
+            // Populate list with listBox values
+            for (int i = 0; i < GeneratedValuesListBox.Items.Count; i++)
+            {
+                list.Add(GeneratedValuesListBox.Items[i].ToString());
+            }
+            return list;
+        }// end GetListString
         #endregion
 
         #region Generic Field Validations
@@ -270,7 +328,7 @@ namespace Ederson_Cardoso_Exercise01
         }
         
         /// <summary>
-        /// This is the event handler for the GetFactorialOfTextBox KeyPress event 
+        /// This is the event handler for the GetFactorialOfTextBox_KeyPress event 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -280,11 +338,31 @@ namespace Ederson_Cardoso_Exercise01
         }
         
         /// <summary>
-        /// This is the event handler for the InputNumberTextBox KeyPress event 
+        /// This is the event handler for the InputNumberTextBox_KeyPress event 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void InputNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumericDigit(e);
+        }
+
+        /// <summary>
+        /// This is the event handler for the InputLowIndexTextBox_KeyPress event 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputLowIndexTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumericDigit(e);
+        }
+
+        /// <summary>
+        /// This is the event handler for the InputHighIndexTextBox_KeyPress event 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputHighIndexTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateNumericDigit(e);
         }

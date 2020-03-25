@@ -47,7 +47,7 @@
             this.InputLowIndexLabel = new System.Windows.Forms.Label();
             this.InputValueForSearchLabel = new System.Windows.Forms.Label();
             this.InputHighIndexTextBox = new System.Windows.Forms.TextBox();
-            this.InpuLowIndexTextBox = new System.Windows.Forms.TextBox();
+            this.InputLowIndexTextBox = new System.Windows.Forms.TextBox();
             this.InputSearchValueTextBox = new System.Windows.Forms.TextBox();
             this.GenerateValuesButton = new System.Windows.Forms.Button();
             this.CharRadioButton = new System.Windows.Forms.RadioButton();
@@ -167,7 +167,7 @@
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InputLowIndexLabel);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InputValueForSearchLabel);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InputHighIndexTextBox);
-            this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InpuLowIndexTextBox);
+            this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InputLowIndexTextBox);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.InputSearchValueTextBox);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.GenerateValuesButton);
             this.DisplayListOfValuesAndSearchGroupBox.Controls.Add(this.CharRadioButton);
@@ -250,13 +250,15 @@
             this.InputHighIndexTextBox.Name = "InputHighIndexTextBox";
             this.InputHighIndexTextBox.Size = new System.Drawing.Size(100, 20);
             this.InputHighIndexTextBox.TabIndex = 6;
+            this.InputHighIndexTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputHighIndexTextBox_KeyPress);
             // 
-            // InpuLowIndexTextBox
+            // InputLowIndexTextBox
             // 
-            this.InpuLowIndexTextBox.Location = new System.Drawing.Point(189, 135);
-            this.InpuLowIndexTextBox.Name = "InpuLowIndexTextBox";
-            this.InpuLowIndexTextBox.Size = new System.Drawing.Size(100, 20);
-            this.InpuLowIndexTextBox.TabIndex = 5;
+            this.InputLowIndexTextBox.Location = new System.Drawing.Point(189, 135);
+            this.InputLowIndexTextBox.Name = "InputLowIndexTextBox";
+            this.InputLowIndexTextBox.Size = new System.Drawing.Size(100, 20);
+            this.InputLowIndexTextBox.TabIndex = 5;
+            this.InputLowIndexTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputLowIndexTextBox_KeyPress);
             // 
             // InputSearchValueTextBox
             // 
@@ -363,7 +365,7 @@
         private System.Windows.Forms.Label InputLowIndexLabel;
         private System.Windows.Forms.Label InputValueForSearchLabel;
         private System.Windows.Forms.TextBox InputHighIndexTextBox;
-        private System.Windows.Forms.TextBox InpuLowIndexTextBox;
+        private System.Windows.Forms.TextBox InputLowIndexTextBox;
         private System.Windows.Forms.TextBox InputSearchValueTextBox;
         private System.Windows.Forms.Label FactorialResultLabel;
         private System.Windows.Forms.Label EvenOddResultLabel;
