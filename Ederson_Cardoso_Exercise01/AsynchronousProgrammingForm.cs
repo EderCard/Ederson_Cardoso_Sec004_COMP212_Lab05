@@ -19,6 +19,7 @@ namespace Ederson_Cardoso_Exercise01
         public AsynchronousProgrammingForm()
         {
             InitializeComponent();
+            IntegersRadioButton.Checked = true;
         }
 
         #region Part I
@@ -151,6 +152,7 @@ namespace Ederson_Cardoso_Exercise01
 
             GeneratedValuesListBox.Items.Clear();
 
+            // generate integers between 10 and 99
             if (IntegersRadioButton.Checked)
             {
                 int result;
@@ -160,16 +162,18 @@ namespace Ederson_Cardoso_Exercise01
                     GeneratedValuesListBox.Items.Add(result);
                 }
             }
+            // generate doubles with interval
+            // random.NextDouble() * (maximum - minimum) + minimum;
             else if (DoublesRadioButton.Checked)
             {
                 double result;
                 for (int counter = 1; counter <= 10; counter++)
                 {
-                    // genarate random number between interval = random.NextDouble() * (maximum - minimum) + minimum;
                     result = random.NextDouble() * (99 - 10) + 10;
                     GeneratedValuesListBox.Items.Add(Math.Round(result, 2));
                 }
             }
+            // generate chars
             else if(CharRadioButton.Checked)
             {
                 char result;
@@ -188,8 +192,57 @@ namespace Ederson_Cardoso_Exercise01
         /// <param name="e"></param>
         private void SearchButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Create a list to store values present in the listBox
+                List<string> list = new List<string>();
+                
+                // Populate list with listBox values
+                for (int i = 0; i < GeneratedValuesListBox.Items.Count; i++)
+                {
+                    list.Add(GeneratedValuesListBox.Items[i].ToString());
+                }
 
+                // Check if informed value is present using a generic search method
+                bool result = SearchData(list, InputSearchValueTextBox.Text);
+
+                // Present result on MessageBox
+                if (result == true)
+                {
+                    MessageBox.Show("Informed value is present in the list.");
+                }
+                else
+                {
+                    MessageBox.Show("Informed value is NOT present in the list.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "MESSAGE",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }// end SearchButton_Click
+
+        /// <summary>
+        /// This generic method returns True if an element is present in a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="searchValue"></param>
+        /// <returns></returns>
+        private bool SearchData<T>(List<T> list, T searchValue) where T : IComparable<T>
+        {
+            bool isPresent = false;
+            foreach (var item in list)
+            {
+                if (item.CompareTo(searchValue) == 0)
+                {
+                    isPresent = true;
+                    break;
+                }
+            }
+            return isPresent;
+        }// end SearchData
 
         /// <summary>
         /// This is the event handler for the DisplayButton click event
